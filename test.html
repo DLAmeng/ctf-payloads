@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <title>QuoccaBank Online</title>
+</head>
+
+<body>
+    <main class="container">
+        <nav>
+            <ul>
+                <li><strong>QuoccaBank Online</strong></li>
+            </ul>
+            <ul>
+                <li>You are logged in as: z5625996</li>
+            </ul>
+        </nav>
+
+        <article>
+            Your goal is to transfer money from another user to yourself. You can 'phish' our bot by sending it any URL
+            you want using this form:
+            <form method="POST" action="/phish">
+                <input name="url" placeholder="http(s)://...">
+                <input type="submit" value="Phish �">
+            </form>
+
+            
+        </article>
+
+        <article>
+            <header>
+                Your Balance
+            </header>
+            $100
+        </article>
+
+        <article>
+            <header>
+                Transfer Money
+            </header>
+            <form method="POST" action="/api/transfer">
+                <input type="hidden" name="csrf_token" value="NTUwMg==">
+                <input type="text" name="username" placeholder="Username to Send To (can be yourself)">
+                <input type="number" name="amount" placeholder="Amount" step="1">
+                <input type="submit" value="Transfer �">
+            </form>
+        </article>
+    </main>
+</body>
+
+</html>
